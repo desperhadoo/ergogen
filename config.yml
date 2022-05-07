@@ -1,0 +1,256 @@
+points:
+  key:
+    padding: cy
+    footprints:
+      choc_hotswap:
+        type: choc
+        nets:
+          from: =column_net
+          to: GND
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+          via: false
+      choc:
+        type: choc
+        anchor:
+          rotate: 180
+        nets:
+          from: =column_net
+          to: GND
+        params:
+          keycaps: true
+          reverse: true
+  zones:
+    matrix:
+      anchor:
+        rotate: 0
+        shift: [150, -150]
+      rows:
+        bottom:
+        home:
+        top:
+      columns:
+        pinkiemodifier:
+          spread: cx
+          row_overrides:
+            home:
+              bind: [0, 0, 0, 1]
+              column_net: P7
+            bottom:
+              bind: [0, 1, 1, 1]
+              column_net: P6
+        pinkie:
+          rotate: 0
+          origin: [0, -15]
+          stagger: 6
+          spread: cx + 1
+          rows:
+            top:
+              bind: [0, 8, 0, 1]
+              column_net: P3
+            home:
+              bind: [0, 5, 0, 1]
+              column_net: P4
+            bottom:
+              bind: [0, 3, 6, 1]
+              column_net: P5
+        ring:
+          rotate: -10
+          origin: [0, -15]
+          stagger: 8
+          spread: cx
+          rows:
+            top:
+              bind: [0, 9, 0, 1]
+              column_net: P1
+            home:
+              bind: [0, 5, 0, 1]
+              column_net: P0
+            bottom:
+              bind: [0, 3, 15, 1]
+              column_net: P2
+        middle:
+          rotate: -10
+          origin: [0, -15]
+          stagger: 5
+          spread: cx
+          rows:
+            top:
+              bind: [0, 1, 0, 1]
+              column_net: P18
+            home:
+              bind: [0, 10, 0, 10]
+              column_net: P19
+            bottom:
+              bind: [0, 10, 22, 1]
+              column_net: P20
+        index:
+          rotate: -10
+          origin: [0, -15]
+          stagger: -6
+          spread: cx
+          rows:
+            top:
+              bind: [0, 1, 0, 10]
+              column_net: P16
+            home:
+              bind: [0, 1, 0, 0]
+              column_net: P14
+            bottom:
+              bind: [0, 10, 5, 1]
+              column_net: P15
+    thumbfan:
+      anchor:
+        ref: matrix_index_bottom
+        shift: [-19, -19]
+      rows:
+        thumb:
+      columns:
+        near:
+          spread: 10
+          rotate: -8
+          origin: [-11.75, -9]
+          row_overrides:
+            thumb:
+              bind: [1, 10, 0, 1]
+              column_net: P8
+        home:
+          spread: 21.25
+          rotate: -10
+          origin: [-11.75, -9]
+          row_overrides:
+            thumb:
+              bind: [40, 1, 0, 12]
+              column_net: P9
+outlines:
+  exports:
+    raw:
+      - type: keys
+        side: left
+        size: [1cx, 1cy]
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 2
+pcbs:
+  main:
+    outlines:
+      main:
+        outline: cutout
+    footprints:
+      promicro:
+        type: promicro
+        anchor:
+          ref: matrix_index_bottom
+          shift: [23, 1.8]
+          rotate: -108
+        params:
+          orientation: down
+          draw: hide
+      b3u1000p:
+        type: b3u1000p
+        nets:
+          r1: RST
+          r2: GND
+        anchor:
+          ref: matrix_pinkie_bottom
+          shift: [6, -11.5]
+          rotate: 0
+        params:
+          reverse: true
+      pcm12:
+        type: pcm12
+        anchor:
+          ref: matrix_pinkie_bottom
+          shift: [-4, -11.5]
+          rotate: 0
+        nets:
+          from: pos
+          to: RAW
+        params:
+          reverse: true
+      via1:
+        type: via
+        anchor:
+          ref: matrix_pinkie_bottom
+          shift: [-6.2, -7]
+        nets:
+          net: pos
+      via2:
+        type: via
+        anchor:
+          ref: matrix_pinkie_bottom
+          shift: [-3.3, -7]
+        nets:
+          net: RAW
+      via3:
+        type: via
+        anchor:
+          ref: matrix_pinkie_bottom
+          shift: [4.3, -7]
+        nets:
+          net: GND
+      via4:
+        type: via
+        anchor:
+          ref: matrix_pinkie_bottom
+          shift: [7.7, -7]
+        nets:
+          net: RST
+      # rotary:
+      #   type: rotary
+      #   nets:
+      #     from: P1
+      #     to: P2
+      #     A: P3
+      #     B: GND
+      #     C: P4
+      #   anchor:
+      #     ref: matrix_ring_bottom
+      #     shift: [0.5, -17]
+      #     rotate: 0
+      trrs:
+        type: trrs
+        nets:
+          A: GND
+          B: GND
+          C: P21
+          D: VCC
+        params:
+          reverse: true
+          symmetric: true
+        anchor:
+          ref: matrix_index_top
+          shift: [18.5, -12.5]
+          rotate: -18
+      bat:
+        type: bat
+        nets:
+          pos: pos
+          neg: GND
+        anchor:
+          ref: matrix_index_bottom
+          shift: [28, 15]
+          rotate: 73
+      # pad:
+      #   type: pad
+      #   nets:
+      #     net: GND
+      #   params:
+      #     width: 4
+      #     height: 4
+      #   anchor:
+      #     ref: matrix_index_bottom
+      #     shift: [10, 10]
+      #     rotate: 0
+      # jstph:
+      #   type: jstph
+      #   nets:
+      #     pos: RAW
+      #     neg: GND
+      #   anchor:
+      #     ref: matrix_index_bottom
+      #     shift: [17, -19]
+      #     rotate: 162
