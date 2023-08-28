@@ -118,3 +118,5 @@ dist
 # Project specific
 output
 temp*
+kicad/fp-info-cache
+kicad/mine-backups/
